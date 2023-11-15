@@ -11,7 +11,10 @@ import Footer from "./components/Footer"
 import Single from "./pages/Single";
 import Write from "./pages/Write";
 import "./style.scss"
-
+import Galery from "./pages/Galery";
+import About from "./pages/About";
+import Contacts from "./pages/Contacts"
+import "bootstrap/dist/css/bootstrap.min.css"
 const Layout = () =>{
   return(
     <>
@@ -48,12 +51,27 @@ const router = createBrowserRouter([
 
       {
         path:"/post/:id",
-        element:<Single/>
+        element:<Single />
       },
 
       {
         path:"/write",
         element:<Write/>
+      },
+
+      {
+        path:"/galery",
+        element:<Galery/>
+      },
+
+      {
+        path:"/about",
+        element:<About/>
+      },
+
+      {
+        path:"/contacts",
+        element:<Contacts/>
       }
     ]
     

@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+import Carousel from 'better-react-carousel'
+import Single from './Single';
 const Home = () => {
 
   const posts = [
@@ -38,6 +41,21 @@ const Home = () => {
    
   return (
     <div className="home">
+      <Carousel cols={2} rows={1} gap={10} loop>
+      <Carousel.Item>
+        <img width="100%" src="https://oda.zht.gov.ua/wp-content/uploads/2023/01/geroj.jpeg" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img width="100%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGg3c40sjpSc7CT7grQgLn2sXKLTrsHRqQ_g&usqp=CAU" />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img width="100%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyUu56NCXXYDueiefA4q9TzSn6zMZl0q8qrQ&usqp=CAU" />
+      </Carousel.Item>
+      <Carousel.Item>
+      <img width="100%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrsu0_vAou4rZrg0ElV3JDnsKss7cS6GlP_w&usqp=CAU" />
+      </Carousel.Item>
+      {/* ... */}
+    </Carousel>
       <div className="posts">
         {posts.map((post) => (
           <div className="post" key={post.id}>
@@ -45,11 +63,13 @@ const Home = () => {
               <img src={post.img} alt="" />
             </div>
             <div className="content">
-              <Link className="link" to={post.id}>
+              <Link className="link" to={`/post/${post.id}`}>
                 <h1>{post.title}</h1>
               </Link>
               <p>{post.desc}</p>
+              <Link className="link" to={`/post/${post.id}`}>
               <button>Read More</button>
+              </Link>
             </div>
           </div>
         ))}
