@@ -31,28 +31,31 @@ const Home = () => {
           img:"https://upload.wikimedia.org/wikipedia/uk/2/26/%D0%93%D0%B0%D1%80%D0%BC%D0%B0%D1%82%D1%96%D0%B9_%D0%92%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%B8%D1%87_001.jpg"
           },
 
+
+      
+
   ]
    
   return (
-    <div className='home'>
+    <div className="home">
       <div className="posts">
-        {posts.map(post =>(
+        {posts.map((post) => (
           <div className="post" key={post.id}>
             <div className="img">
               <img src={post.img} alt="" />
-              <div className="content">
-                <Link className='link' to={`/post/${post.id}`}>
+            </div>
+            <div className="content">
+              <Link className="link" to={post.id}>
                 <h1>{post.title}</h1>
-                </Link>
-                <p>{post.desc}</p>
-                <button>Read More</button>
-              </div>
+              </Link>
+              <p>{post.desc}</p>
+              <button>Read More</button>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Home
