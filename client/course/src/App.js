@@ -1,7 +1,6 @@
 import{
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet,
 } from "react-router-dom";
 import Register from "./pages/Register";
@@ -22,6 +21,18 @@ const Layout = () =>{
     </>
   )
 }
+
+function App() {
+  return (
+    <div className="app">
+      <div className="container"> 
+       <RouterProvider router ={router} />
+      </div>
+    </div>
+  );
+  
+}
+
 
 const router = createBrowserRouter([
 
@@ -58,16 +69,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
-  return (
-    <div className="app">
-      <div className="container"> 
-       <RouterProvider router ={router} />
-      </div>
-    </div>
-  );
-  
-}
 
 
 
