@@ -18,9 +18,19 @@ body{
 
 .btn{
     color:black;
-   
+    border: 2px solid;
 }
 
 .btn:hover{
     color: rgb(253, 202, 34);
+}
+
+.send_form{
+    padding: 1.375rem .75rem;
+    line-height: 1.5;
+    color: black;
+    background-color: white;
+    border-radius: 0 !important;
+    border: 1px solid black;
+    
 }

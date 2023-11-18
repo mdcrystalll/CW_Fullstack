@@ -1,49 +1,59 @@
-import React, { useState } from 'react'
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import axios from "axios"
+import "react-quill/dist/quill.snow.css";
 const Write = () => {
-  const [value, setValue] = useState('');
+  const [post, setPost] = useState({
+    title: "",
+    desc: "",
+    img: "",
+  });
 
-  console.log(value)
+  const createPost = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/posts", post)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
-    <div className='add'>
-      <div className="content">
-        <input type="text" placeholder='Title' />
-        <div className="editorContainer">
-          <ReactQuill theme="snow" value={value} onChange={setValue} />;
+    <form onSubmit={createPost}>
+      <div className="add">
+        <div className="content">
+          <input
+            required
+            type="text"
+            placeholder="Title"
+            onChange={(e) => {
+              setPost({ ...post, title: e.target.value });
+            }}
+          />
+          <div className="editorContainer">
+            <textarea
+              required
+              onChange={(e) => {
+                setPost({ ...post, desc: e.target.value });
+              }}
+            />
+          </div>
+          <input
+            required
+            type="text"
+            placeholder="Image"
+            onChange={(e) => {
+              setPost({ ...post, img: e.target.value });
+            }}
+          />
+          <button type="submit">Create</button>
         </div>
       </div>
-      <div className="menu">
-        <div className="item">
-          <h1>Publish</h1>
-          <span>
-            <b>Status:</b> Draft
-          </span>
-          <span>
-            <b>Visibility:</b> Public
-          </span>
-          <input style={{display:"none"}} type="file" id="file" name="" />
-          <label className='file' htmlFor="file">Upload image</label>
-          <div className="buttons">
-            <button>Save as a draft</button>
-            <button>Update</button>
-          </div>
-        </div>
-        <div className="item">
-          <h1>Category</h1>
-          <div className="cat">
-          <input type="radio" name="cat" value="galery" id="galery" />
-          <label htmlFor="galery">Galery</label>
-          </div>
-          <div className="cat">
-          <input type="radio" name="cat" value="news" id="news" />
-          <label htmlFor="galery">News</label>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  )
-}
+    </form>
+  );
+};
 
-export default Write
+export default Write;

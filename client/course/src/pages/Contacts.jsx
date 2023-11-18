@@ -1,8 +1,23 @@
-import React from 'react'
+
 import {Container, Row, Col} from "react-bootstrap"
 import { contactConfig } from '../content_option'
 import './contacts.css'
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 const Contacts = () => {
+    const form = useRef();
+
+    const sendEmail = (e) => {
+      e.preventDefault();
+  
+      emailjs.sendForm('service_7jd4lhs', 'template_cvg491u', form.current, 'jjRG0HYrWjf0RDbEf')
+        .then((result) => {
+            console.log(result.text);
+            console.log("message sent")
+        }, (error) => {
+            console.log(error.text);
+        });
+    };
   return (
     <Container>
         <Row className='mb-5 mt-3'>
@@ -27,7 +42,8 @@ const Contacts = () => {
                 <p>{contactConfig.description}</p>
             </Col>
             <Col lg='/' className='d-flex align-items-center'>
-                <form className='contact__form w-100'>
+                
+            <form className='contact__form w-100' ref={form} onSubmit={sendEmail}>
                     <Row>
                         <Col lg='6' className='form-group'>
                             <input className='form-control'
